@@ -1,0 +1,16 @@
+dj-database-url==0.4.1
+Django==1.10
+django-appconf==1.0.2
+django-classy-tags==0.6.2
+django-filter==0.14.0
+django-location-field==2.0.0b0
+djangorestframework==3.4.6
+geopy==1.11.0
+gunicorn==19.6.0
+Markdown==2.6.6
+Pillow==3.4.1
+psycopg2==2.6.2
+python-dateutil==1.5
+six==1.10.0
+virtualenv==15.0.3
+whitenoise==3.2

@@ -1,0 +1,10 @@
+venv/*
+*.pyc
+staticfiles
+.env
+images
+./static/
+db.sqlite3
+static/*
+migrations/*
+.DS_Store
