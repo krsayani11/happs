@@ -2,7 +2,7 @@ from rest_framework import viewsets, status, permissions
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view, detail_route, list_route
 from rest_framework.response import Response
-from .models import UserEvents
+from .models import userevents
 from rest_framework.generics import (
         DestroyAPIView,
         ListAPIView,
@@ -12,10 +12,9 @@ from django.http import HttpResponse
 from .serializers import EventSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 
-
 # Create your views here.
 class EventsViewSet(viewsets.ModelViewSet):
-    queryset = UserEvents.objects.all()
+    queryset = userevents.objects.all()
     serializer_class = EventSerializer
     filter_backends = (DjangoFilterBackend,)
     filter_fields = ('event_name', 
@@ -35,7 +34,7 @@ class EventsViewSet(viewsets.ModelViewSet):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def search(request):
-        queryset_list = UserEvents.objects.all() 
+        queryset_list = userevents.objects.all() 
         query = request.GET.get("q")
         if query:
             queryset_list = queryset_list.filter(
@@ -50,7 +49,7 @@ class EventsViewSet(viewsets.ModelViewSet):
 
     
 def event(request, pk):
-    queryset = UserEvents.objects.get(pk)
+    queryset = userevents.objects.get(pk)
     serializer = EventSerializer
     return Response(serializer.data)
 
@@ -64,19 +63,19 @@ def get_event(request, image_id):
     image = "../" + str(db_image.datafile)
 
 class EventDetailAPIView(RetrieveAPIView):
-    queryset = UserEvents.objects.all()
+    queryset = userevents.objects.all()
     serializer_class = EventSerializer
 
 class EventUpdateAPIView(UpdateAPIView):
-    queryset = UserEvents.objects.all()
+    queryset = userevents.objects.all()
     serializer_class = EventSerializer
 
 class EventDestroyAPIView(DestroyAPIView):
-    queryset = UserEvents.objects.all()
+    queryset = userevents.objects.all()
     serializer_class = EventSerializer
 
 class EventListAPIView(ListAPIView):
-    queryset = UserEvents.objects.all()
+    queryset = userevents.objects.all()
     serializer_class = EventSerializer
     filter_backends = (DjangoFilterBackend,)
     filter_fields = ('event_name', 

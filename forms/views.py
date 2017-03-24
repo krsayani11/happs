@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import User, attendees
+from .models import user, attendees
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import UserSerializer, AttendeesSerializer
@@ -10,13 +10,18 @@ from rest_framework import generics
 from django.db.models import Q
 import django_filters.rest_framework
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.generics import (
+        DestroyAPIView,
+        ListAPIView,
+        UpdateAPIView,
+        RetrieveAPIView)
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
+    queryset = user.objects.all()
     serializer_class = UserSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('name','username', 'user_id', 'authentication_token')
+    filter_fields = ('name','username', 'user_id', 'authentication_token', 'friends')
     @detail_route(methods=['post'])
     def addUser(self, request):
         serializer = UserSerializer(data = request.data)
@@ -25,8 +30,13 @@ class UserViewSet(viewsets.ModelViewSet):
             return Response(serializer.data, status = status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class UserUpdateAPIView(UpdateAPIView):
+    queryset = user.objects.all()
+    serializer_class = UserSerializer
+    lookup_fields = ('user_id')
+
 def search(request):
-    queryset_list = User.objects.all() 
+    queryset_list = user.objects.all() 
     query = self.request.GET.get("q")
     if query:
         queryset_list = queryset_list.filter(
@@ -45,3 +55,7 @@ class AttendeesViewSet(viewsets.ModelViewSet):
             serializer.save()
             return Response(serializer.data, status = status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class AttendeesDestroyAPIView(DestroyAPIView):
+    queryset = attendees.objects.all()
+    serializer_class = AttendeesSerializer

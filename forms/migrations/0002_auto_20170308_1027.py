@@ -7,14 +7,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('events', '0001_initial'),
         ('forms', '0001_initial'),
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='userevents',
-            name='host',
-            field=models.ForeignKey(related_name='for_host', default=None, to='forms.user'),
+        migrations.AlterField(
+            model_name='user',
+            name='friends',
+            field=models.ManyToManyField(to='forms.user', blank=True),
         ),
     ]

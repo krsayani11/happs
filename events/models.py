@@ -5,14 +5,14 @@ def upload_to(instance, filename):
     return 'static/images/{}'.format(filename)
 
 # Create your models here.
-class UserEvents(models.Model):
+class userevents(models.Model):
     event_name = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
     date = models.DateField()
     start_time = models.TimeField()
     end_time = models.TimeField()
     host = models.ForeignKey(
-         'forms.User',
+         'forms.user',
          related_name = "for_host",
          on_delete=models.CASCADE,
          default = None,)

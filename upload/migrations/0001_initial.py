@@ -13,13 +13,13 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='FileUpload',
+            name='fileupload',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('created', models.DateTimeField(auto_now_add=True)),
                 ('event_id', models.IntegerField()),
                 ('datafile', models.ImageField(upload_to=upload.models.upload_to, null=True, verbose_name='image', blank=True)),
-                ('username', models.ForeignKey(default=None, to='forms.User')),
+                ('username', models.ForeignKey(default=None, to='forms.user')),
             ],
         ),
     ]

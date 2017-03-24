@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, attendees
+from .models import user, attendees
 
 class AttendeesSerializer(serializers.ModelSerializer):
 	class Meta:
@@ -8,6 +8,6 @@ class AttendeesSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
 	class Meta:
-		model = User
-		fields = ('name', 'username', 'user_id', 'authentication_token', 'datafile')
+		model = user
+		fields = ('name', 'username', 'user_id', 'authentication_token', 'datafile', 'friends')
 		read_only_fields = ('datafile',)

@@ -1,13 +1,13 @@
 from __future__ import unicode_literals
 from django.db import models
-from forms.models import User
+from forms.models import user
 
 def upload_to(instance, filename):
 	return 'static/images/{}'.format(filename)
 
-class FileUpload(models.Model):
+class fileupload(models.Model):
 	username = models.ForeignKey(
-         'forms.User',
+         'forms.user',
          on_delete=models.CASCADE,
          default = None,)
 	created = models.DateTimeField(auto_now_add=True)

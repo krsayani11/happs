@@ -1,5 +1,5 @@
-from .models import UserEvents
-from forms.models import User
+from .models import userevents
+from forms.models import user
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 
@@ -26,7 +26,7 @@ class DynamicFieldsModelSerializer(serializers.ModelSerializer):
 
 class EventSerializer(serializers.HyperlinkedModelSerializer, DynamicFieldsModelSerializer):
     class Meta:
-        model = UserEvents
+        model = userevents
         fields = (
             'id',
             'event_name', 

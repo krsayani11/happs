@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Picture
+from .models import picture
 from rest_framework.response import Response
 from .serializers import MediaSerializer
 from rest_framework import viewsets, status, permissions
@@ -12,7 +12,7 @@ def index(request):
 
 
 class MediaViewSet(viewsets.ModelViewSet):
-    queryset = Picture.objects.all()
+    queryset = picture.objects.all()
     serializer_class = MediaSerializer
     filter_backends = (DjangoFilterBackend,)
     filter_fields = (

@@ -16,22 +16,23 @@ class Migration(migrations.Migration):
             name='attendees',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('attendee_event', models.ForeignKey(default=None, to='events.UserEvents')),
+                ('attendee_event', models.ForeignKey(default=None, to='events.userevents')),
             ],
         ),
         migrations.CreateModel(
-            name='User',
+            name='user',
             fields=[
                 ('name', models.CharField(max_length=255)),
                 ('username', models.CharField(max_length=255, serialize=False, primary_key=True)),
                 ('user_id', models.BigIntegerField()),
                 ('authentication_token', models.CharField(max_length=255)),
                 ('datafile', models.ImageField(upload_to=forms.models.upload_to, null=True, verbose_name=b'image', blank=True)),
+                ('friends', models.ManyToManyField(default=None, to='forms.user')),
             ],
         ),
         migrations.AddField(
             model_name='attendees',
             name='username',
-            field=models.ForeignKey(to='forms.User'),
+            field=models.ForeignKey(to='forms.user'),
         ),
     ]

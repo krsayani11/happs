@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User, attendees
+from .models import user, attendees
 # Register your models here.
-admin.site.register(User)
+admin.site.register(user)
 admin.site.register(attendees)
